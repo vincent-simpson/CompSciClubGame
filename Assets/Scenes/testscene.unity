@@ -275,6 +275,20 @@ Prefab:
       propertyPath: m_GravityScale
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1183841688814274, guid: b541fe02ca615ff448f305f2de12958b, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 212649479325489182, guid: b541fe02ca615ff448f305f2de12958b,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 34945173
+      objectReference: {fileID: 0}
+    - target: {fileID: 212649479325489182, guid: b541fe02ca615ff448f305f2de12958b,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58128860909461608, guid: b541fe02ca615ff448f305f2de12958b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b541fe02ca615ff448f305f2de12958b, type: 2}
