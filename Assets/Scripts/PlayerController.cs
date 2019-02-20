@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		horizontalMove = Input.GetAxisRaw("Horizontal") * moveSpeed;
 		
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
 			jumpCount -= 1;
