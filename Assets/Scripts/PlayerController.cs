@@ -2,32 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
-    public float moveSpeed;
-    public float jumpHeight;
+     public float moveSpeed;
+     public float jumpHeight;
+     public CharacterController2D controller;
+     public float horizontalMove = 0f;
+     bool jump = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
-        }
+     int jumpCount = 0; //keep track of the number of allowed jumps we have left
+     int maxJumps = 1; //the total number of max jumps allowed
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-        }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-        }
-    }
+     // Use this for initialization
+     void Start()
+     {
+          jumpCount = maxJumps; //set the jump count to the max jumps allowed
+     }
+
+     // Update is called once per frame
+     void Update()
+     {
+
+          horizontalMove = Input.GetAxisRaw("Horizontal") * moveSpeed;
+
+          if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+          {
+               GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+               jumpCount -= 1; //decrease the number of allowed jumps left 
+               jump = false;
+          }
+
+          if (Input.GetKey(KeyCode.D))
+          {
+               controller.Move(horizontalMove, false, jump);
+               // GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+          }
+
+          if (Input.GetKey(KeyCode.A))
+          {
+               controller.Move(horizontalMove, false, jump);
+               // GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+          }
+     }
+
+     private void OnCollisionEnter2D(Collision2D collision)
+     {
+          jumpCount = maxJumps; //whenever the ground is hit, reset the total jump count
+     }
 }
