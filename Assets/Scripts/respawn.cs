@@ -5,8 +5,8 @@ using UnityEngine;
 public class respawn : MonoBehaviour
 {
      public float threshold;
-     public Transform playerSpawnPoint;
-     public GameObject player;
+     public Transform playerSpawnPoint; //spawn point
+     public GameObject player; //player
 
     // Start is called before the first frame update
     void Start()

@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour {
 		
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+               jump = true;
+               controller.Move(0, false, jump);
+            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+         
 			jumpCount -= 1;
 			jump = false;
         }
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour {
         {
 			controller.Move(horizontalMove, false, jump);
             //GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -42,10 +46,11 @@ public class PlayerController : MonoBehaviour {
 			controller.Move(horizontalMove, false, jump);
             //GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
+
     }
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		jumpCount = maxJumps;
+          jumpCount = maxJumps;   
 	}
 }
